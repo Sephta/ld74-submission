@@ -782,6 +782,14 @@ PrefabInstance:
       propertyPath: _dmgStat
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7644106898215429859, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
+      propertyPath: _spdStat
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644106898215429859, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
+      propertyPath: _knockback
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
 --- !u!4 &1267105934 stripped
@@ -1014,6 +1022,14 @@ PrefabInstance:
     - target: {fileID: 7644106898215429859, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
       propertyPath: _dmgStat
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644106898215429859, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
+      propertyPath: _spdStat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644106898215429859, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}
+      propertyPath: _knockback
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e1e5dc85a497bd4b914e58a2848a785, type: 3}

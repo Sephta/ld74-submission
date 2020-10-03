@@ -11,12 +11,21 @@ public class CreatureBattleAI : MonoBehaviour
     public EntityType _entityType = EntityType.enemy;
     [ReadOnly] public GameObject _currTarget = null;
     public float _moveSpeed = 0f;
+    
+    // STATS -------------------------------------------------------------
+    // damage stat
     public float _dmgStat = 0f;
+    public float _knockback = 0f;
+    // attack speed stat
+    [Range(0, 1), Tooltip("Rate at which attacks land. (in seconds)")]
+    public float _spdStat = 0f;
+    [ReadOnly] public float _atkTimer = 0f;
     
     // Entity Health ---------------------------------
     [SerializeField] public float _maxHealth = 0f;
     [SerializeField, ReadOnly] public float _currHealth = 0f;
     // -----------------------------------------------
+    // end STATS ---------------------------------------------------------
 
     [Header("Battle Data")]
     [SerializeField] public List<GameObject> _enemyCreatures = new List<GameObject>();
@@ -50,11 +59,16 @@ public class CreatureBattleAI : MonoBehaviour
 
     void Update()
     {
+        // DecramentTimer();
+
         if (_currHealth == 0)
         {
             Debug.Log(gameObject.name + " has been defeated.");
             Destroy(gameObject);
         }
+
+        // if (_atkTimer == 0)
+        //     SetTimer(_spdStat);
     }
 
     void FixedUpdate()
@@ -65,10 +79,23 @@ public class CreatureBattleAI : MonoBehaviour
     }
 
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, float knockback)
     {
         _currHealth -= amount;
         _currHealth = Mathf.Clamp(_currHealth, 0, _maxHealth);
+        ApplyKnockback(knockback);
+    }
+
+    public void ApplyKnockback(float amount)
+    {
+        float clampX = ((float)Random.Range(-100, 101)) / 100;
+        float clampY = ((float)Random.Range(-100, 101)) / 100;
+        clampX = Mathf.Clamp(clampX, -1f, 1f);
+        clampY = Mathf.Clamp(clampY, -1f, 1f);
+        Vector2 variationY = new Vector2(clampX, clampY);
+
+        _rb.AddForce(((variationY * 100f) - _rb.velocity) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        _rb.AddForce(((CalculateDirection() * -amount) - _rb.velocity) * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 
 
@@ -106,5 +133,13 @@ public class CreatureBattleAI : MonoBehaviour
                         this._enemyCreatures.Add(enemy);
             }
         }
+    }
+
+    public void SetTimer(float amount) { _atkTimer = amount; }
+
+    public void DecramentTimer()
+    {
+        _atkTimer -= Time.deltaTime;
+        _atkTimer = Mathf.Clamp(_atkTimer, 0, _spdStat);
     }
 }
