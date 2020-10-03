@@ -5,14 +5,18 @@ using UnityEngine;
 public class CreatureBattleAI : MonoBehaviour
 {
     [Header("Dependencies")]
-    Rigidbody2D _rb = null;
+    public Rigidbody2D _rb = null;
+    public Animator _anim = null;
 
     [Header("Creature Battle Data")]
-    public EntityType _entityType = EntityType.enemy;
+    public EntityType _entityType = (EntityType)0;
     [ReadOnly] public GameObject _currTarget = null;
     public float _moveSpeed = 0f;
     
     // STATS -------------------------------------------------------------
+    // health stat
+    [SerializeField] public float _maxHealth = 0f;
+    [SerializeField, ReadOnly] public float _currHealth = 0f;
     // damage stat
     public float _dmgStat = 0f;
     public float _knockback = 0f;
@@ -20,11 +24,6 @@ public class CreatureBattleAI : MonoBehaviour
     [Range(0, 1), Tooltip("Rate at which attacks land. (in seconds)")]
     public float _spdStat = 0f;
     [ReadOnly] public float _atkTimer = 0f;
-    
-    // Entity Health ---------------------------------
-    [SerializeField] public float _maxHealth = 0f;
-    [SerializeField, ReadOnly] public float _currHealth = 0f;
-    // -----------------------------------------------
     // end STATS ---------------------------------------------------------
 
     [Header("Battle Data")]
@@ -45,16 +44,18 @@ public class CreatureBattleAI : MonoBehaviour
         if (GetComponent<Rigidbody2D>() != null)
             _rb = GetComponent<Rigidbody2D>();
 
+        _currHealth = _maxHealth;
         // Find initial closest enemy
         GetTargets();
 
+        if (this._enemyCreatures.Count <= 0)
+            return;
         GameObject prev = this._enemyCreatures[0];
         foreach (GameObject enemy in  this._enemyCreatures)
                 if (Vector3.Distance(transform.position, enemy.transform.position) < Vector3.Distance(transform.position, prev.transform.position))
                     prev = enemy;
         
         _currTarget = prev;
-        _currHealth = _maxHealth;
     }
 
     void Update()
@@ -64,7 +65,7 @@ public class CreatureBattleAI : MonoBehaviour
         if (_currHealth == 0)
         {
             Debug.Log(gameObject.name + " has been defeated.");
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
         // if (_atkTimer == 0)
@@ -81,6 +82,9 @@ public class CreatureBattleAI : MonoBehaviour
 
     public void TakeDamage(float amount, float knockback)
     {
+        if (_currTarget == null)
+            return;
+
         _currHealth -= amount;
         _currHealth = Mathf.Clamp(_currHealth, 0, _maxHealth);
         ApplyKnockback(knockback);
@@ -88,6 +92,9 @@ public class CreatureBattleAI : MonoBehaviour
 
     public void ApplyKnockback(float amount)
     {
+        if (_currTarget == null)
+            return;
+
         float clampX = ((float)Random.Range(-100, 101)) / 100;
         float clampY = ((float)Random.Range(-100, 101)) / 100;
         clampX = Mathf.Clamp(clampX, -1f, 1f);

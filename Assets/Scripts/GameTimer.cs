@@ -10,7 +10,7 @@ public class GameTimer : MonoBehaviour
 
     [Header("Timer Data")]
     [Tooltip("In minutes.")] public float _startTime = 0f;
-    [Tooltip("Signifies start of game."), SerializeField, ReadOnly] private bool _begin = false;
+    [Tooltip("Signifies start of game."), SerializeField, ReadOnly] public bool _begin = false;
     [SerializeField, ReadOnly, Tooltip("In seconds.")] public float _timeLeft = 0f;
 
     [Header("Instance Data")]

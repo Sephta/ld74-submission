@@ -201,10 +201,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c870dc2f36f3b4eacbb47cf642a4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityType: 2
+  _rb: {fileID: 7160176159062894245}
+  _anim: {fileID: 1703703322127032588}
+  _entityType: 0
   _currTarget: {fileID: 0}
   _moveSpeed: 0
-  _entityHealth: 0
+  _dmgStat: 0
+  _knockback: 0
+  _spdStat: 0
+  _atkTimer: 0
+  _maxHealth: 0
+  _currHealth: 0
   _enemyCreatures: []
 --- !u!114 &3071022489394683698
 MonoBehaviour:
@@ -218,3 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5dfd70fc771814d80cb6e0f3aadca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bai: {fileID: 0}
+  _tickRate: 0
+  _timer: 0
