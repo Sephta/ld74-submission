@@ -5,8 +5,8 @@ using UnityEngine;
 public class BattleSystem : MonoBehaviour
 {
     [Header("Battle System Data")]
-    public List<bool> _playerCreatures = new List<bool>(new bool[3]);
-    public List<bool> _enemyCreatures = new List<bool>(new bool[3]);
+    public List<GameObject> _playerCreatures = new List<GameObject>();
+    public List<GameObject> _enemyCreatures = new List<GameObject>();
 
     [Header("Instance Data")]
     public static BattleSystem _instance;
@@ -24,6 +24,7 @@ public class BattleSystem : MonoBehaviour
 
     void Start()
     {
+        // Remove this later...
         GameTimer._instance.StartTimer();
     }
 

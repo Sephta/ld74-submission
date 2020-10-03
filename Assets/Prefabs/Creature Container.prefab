@@ -64,9 +64,11 @@ GameObject:
   - component: {fileID: 6111678340658335888}
   - component: {fileID: 7160176159062894245}
   - component: {fileID: 3291215508181514130}
+  - component: {fileID: 7644106898215429859}
+  - component: {fileID: 3071022489394683698}
   m_Layer: 0
   m_Name: Creature
-  m_TagString: Untagged
+  m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,3 +189,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debug_MousePosition: 0
   _mousePos: {x: 0, y: 0}
+--- !u!114 &7644106898215429859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279920984207962600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c870dc2f36f3b4eacbb47cf642a4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityType: 2
+  _currTarget: {fileID: 0}
+  _moveSpeed: 0
+  _entityHealth: 0
+  _enemyCreatures: []
+--- !u!114 &3071022489394683698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279920984207962600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5dfd70fc771814d80cb6e0f3aadca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
