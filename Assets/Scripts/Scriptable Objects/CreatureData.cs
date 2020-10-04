@@ -14,6 +14,8 @@ public class CreatureData : ScriptableObject
     [SerializeField] private Vector2 _creatureColliderSize = Vector2.zero;
     [SerializeField] private List<int> _creatureStats = new List<int>();
 
+    [SerializeField] private string _creatureDescription = "";
+
     // PUBLIC DATA
     public string CreatureName { get { return _creatureName; } }
     public string DisplayName { get { return _displayName; } }
@@ -22,4 +24,6 @@ public class CreatureData : ScriptableObject
     public int CreatureEXP { get { return _creatureEXP; } }
     public Vector2 ColliderSize { get { return _creatureColliderSize; } }
     public List<int> CreatureStats { get { return _creatureStats; } }
+
+    public string CreatureDescription { get { return _creatureDescription; } }
 }

@@ -12,12 +12,18 @@ public class CreatureBattleAI : MonoBehaviour
     public Rigidbody2D _rb = null;
     public Animator _anim = null;
     public GameObject damageTextPrefab = null;
+
+    [Header("Particles")]
     public GameObject ringParticle = null;
+    public GameObject hitParticle = null;
 
     [Header("Creature Battle Data")]
     public EntityType _entityType = (EntityType)0;
     [ReadOnly] public GameObject _currTarget = null;
     public float _moveSpeed = 0f;
+
+    public float _abilityTime = 0f;
+    [SerializeField, ReadOnly] private float _abilityTimer = 0f;
     
     // STATS -------------------------------------------------------------
     // health stat
@@ -108,7 +114,12 @@ public class CreatureBattleAI : MonoBehaviour
             _abilityTrigger = false;
         }
         else if (_entityType != (EntityType)0 && _currTarget != null)
+        {
+            _anim.SetBool("isRunning", true);
             _rb.AddForce(((CalculateDirection() * _moveSpeed) - _rb.velocity) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+        else
+            _anim.SetBool("isRunning", false);
     }
 
     void OnMouseDown()
@@ -149,10 +160,18 @@ public class CreatureBattleAI : MonoBehaviour
             return;
 
         // Popup Text
-        GameObject refr = Instantiate(damageTextPrefab, transform);
+        GameObject refr = Instantiate(damageTextPrefab, this.transform);
         Transform child = refr.transform.GetChild(0);
         child.position += new Vector3(0.4f, 0f, 0f);
         child.GetComponent<TextMeshPro>().SetText("-" + amount.ToString());
+
+        // Hit Particle
+        GameObject refr2 = Instantiate(hitParticle, this.transform);
+        ParticleSystem.MainModule main = refr2.GetComponent<ParticleFunctions>()._system.main;
+        main.simulationSpeed = 3.5f;
+
+        Light2D particleLight = refr2.transform.GetChild(1).GetComponent<Light2D>();
+        particleLight.color = Color.yellow;
 
         _currHealth -= amount;
         _currHealth = Mathf.Clamp(_currHealth, 0, _maxHealth);
@@ -175,7 +194,7 @@ public class CreatureBattleAI : MonoBehaviour
     }
 
 
-    private Vector2 CalculateDirection()
+    public Vector2 CalculateDirection()
     {
         float moveX = _currTarget.transform.position.x - transform.position.x;
         float moveY = _currTarget.transform.position.y - transform.position.y;

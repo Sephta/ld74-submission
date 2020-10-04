@@ -18,4 +18,6 @@ MonoBehaviour:
   _creatureImage: {fileID: 1913543167974458854, guid: 82ca09862eb531b4382810140150ab38, type: 3}
   _creatureEXP: 0
   _creatureColliderSize: {x: 0, y: 0}
-  _creatureStats: 
+  _creatureStats: 640000000000000000000000000000000000000000000000
+  _creatureDescription: A slime-like creature regarded by many as lying at the tip
+    of the bell-curve...

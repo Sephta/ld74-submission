@@ -34,8 +34,13 @@ public class CreatureColliderBehavior : MonoBehaviour
             if (collision.gameObject.tag == "Creature")
             {
                 Debug.Log("<" + gameObject.name + "> hit <" + collision.gameObject.name + "> for " + gameObject.GetComponent<CreatureBattleAI>()._dmgStat + " dmg");
+                GameObject temp = _bai._currTarget;
+                _bai._currTarget = collision.gameObject;
+                _bai._anim.SetFloat("dirX", _bai.CalculateDirection().x);
+                _bai._anim.SetFloat("dirY", _bai.CalculateDirection().y);
                 _bai._anim.SetTrigger("doAttack");
                 collision.gameObject.GetComponent<CreatureBattleAI>().TakeDamage(_bai._dmgStat, _bai._knockback);
+                _bai._currTarget = temp;
             }
             _bai.SetTimer(_bai._spdStat);
             // SetTimer(_tickRate);

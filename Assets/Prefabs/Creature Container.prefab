@@ -360,15 +360,19 @@ MonoBehaviour:
   _anim: {fileID: 1703703322127032588}
   damageTextPrefab: {fileID: 1493890510516903782, guid: 8e6bdc5fa02bae743b7b429c52cec524, type: 3}
   ringParticle: {fileID: 8145988287558639286, guid: 2e0b8bc2277ec344481b84e1ce6bc121, type: 3}
+  hitParticle: {fileID: 845743370255687629, guid: fae34ffe47bef314cb085de3046b9139, type: 3}
   _entityType: 0
   _currTarget: {fileID: 0}
   _moveSpeed: 0
+  _abilityTime: 0
+  _abilityTimer: 0
   _maxHealth: 0
   _currHealth: 0
   _dmgStat: 0
   _knockback: 0
   _spdStat: 0
   _atkTimer: 0
+  _abilityTrigger: 0
   _enemyCreatures: []
 --- !u!114 &3071022489394683698
 MonoBehaviour:

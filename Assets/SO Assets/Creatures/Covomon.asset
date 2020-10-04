@@ -18,4 +18,5 @@ MonoBehaviour:
   _creatureImage: {fileID: -8959744555727877987, guid: 82ca09862eb531b4382810140150ab38, type: 3}
   _creatureEXP: 0
   _creatureColliderSize: {x: 0, y: 0}
-  _creatureStats: 
+  _creatureStats: 000000000000000000000000000000000000000000000000
+  _creatureDescription: ITS NOT A PACMAN GHOST

@@ -56,8 +56,10 @@ public class BattleDirector : MonoBehaviour
         _bai._maxHealth = 100f;
         _bai._moveSpeed = 5f;
         _bai._dmgStat = 1f;
-        _bai._knockback = 100f;
-        _bai._spdStat = 0.5f;
+        float test1 = Random.Range(200f, 500f);
+        _bai._knockback = test1;
+        float test2 = Random.Range(0.25f, 0.8f);
+        _bai._spdStat = test2;
 
 
         SpriteRenderer cSprite = creature.GetComponent<SpriteRenderer>();
