@@ -42,31 +42,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (GameObject.Find("Creature Container") != null)
             _creatureRef = GameObject.Find("Creature Container");
-
-        // if (SceneManager.GetSceneAt(0).name == "Battle")
-        // {
-        //     Debug.Log("Generate Battle");
-        //     BattleDirector._instance._battleStart = true;
-        // }
     }
 
     // void FixedUpdate() {}
-
-
-    private void PrepareBattle()
-    {
-        // Setup Player's team
-        PlayerSetup();
-    }
-
-    private void PlayerSetup()
-    {
-        foreach (bool selection in _selected)
-        {
-            if (_creatureRef != null)
-            {
-                GameObject refr = Instantiate(_creatureRef, Vector3.zero, Quaternion.identity);
-            }
-        }
-    }
 }

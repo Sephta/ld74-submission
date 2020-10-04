@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+
+using TMPro;
+
 
 public class CreatureBattleAI : MonoBehaviour
 {
     [Header("Dependencies")]
     public Rigidbody2D _rb = null;
     public Animator _anim = null;
+    public GameObject damageTextPrefab = null;
+    public GameObject ringParticle = null;
 
     [Header("Creature Battle Data")]
     public EntityType _entityType = (EntityType)0;
@@ -27,6 +33,7 @@ public class CreatureBattleAI : MonoBehaviour
     // end STATS ---------------------------------------------------------
 
     [Header("Battle Data")]
+    public bool _abilityTrigger = false;
     [SerializeField] public List<GameObject> _enemyCreatures = new List<GameObject>();
 
     public enum EntityType
@@ -45,8 +52,29 @@ public class CreatureBattleAI : MonoBehaviour
             _rb = GetComponent<Rigidbody2D>();
 
         _currHealth = _maxHealth;
+
         // Find initial closest enemy
         GetTargets();
+
+        if (transform.GetChild(0) != null)
+        {
+            switch (_entityType)
+            {
+                case ((EntityType) 0):
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    break;
+
+                case ((EntityType) 1):
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(0).GetComponent<TextMeshPro>().SetText(gameObject.name);
+                    break;
+
+                case ((EntityType) 2):
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(0).GetComponent<TextMeshPro>().SetText(gameObject.name);
+                    break;
+            }
+        }
 
         if (this._enemyCreatures.Count <= 0)
             return;
@@ -74,9 +102,44 @@ public class CreatureBattleAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        // _rb.MovePosition(_currTarget.transform.position);
-        if (_entityType != (EntityType)0 && _currTarget != null)
+        if (_abilityTrigger)
+        {
+            Debug.Log("<" + gameObject.name + "> has activated ability.");
+            _abilityTrigger = false;
+        }
+        else if (_entityType != (EntityType)0 && _currTarget != null)
             _rb.AddForce(((CalculateDirection() * _moveSpeed) - _rb.velocity) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+    }
+
+    void OnMouseDown()
+    {
+        GameObject refr = Instantiate(ringParticle, this.transform);
+        ParticleFunctions _ringData = refr.GetComponent<ParticleFunctions>();
+        ParticleSystem.MainModule _main = _ringData._system.main;
+        _main.simulationSpeed = 2f;
+
+        Light2D light = refr.transform.GetChild(1).GetComponent<Light2D>();
+
+        if (PlayerPartnerCommands._instance != null)
+        {
+            if (_entityType == EntityType.player)
+            {
+                _main.startColor = Color.green;
+                light.color = Color.green;
+                PlayerPartnerCommands._instance._selectedPartner = this.gameObject;
+            }
+            else if (_entityType == EntityType.enemy && PlayerPartnerCommands._instance._selectedPartner != null)
+            {
+                _main.startColor = Color.blue;
+                light.color = Color.blue;
+                PlayerPartnerCommands._instance._selectedEnemy = this.gameObject;
+            }
+            else if (_entityType == EntityType.enemy && PlayerPartnerCommands._instance._selectedPartner == null)
+            {
+                _main.startColor = Color.red;
+                light.color = Color.red;
+            }
+        }
     }
 
 
@@ -84,6 +147,12 @@ public class CreatureBattleAI : MonoBehaviour
     {
         if (_currTarget == null)
             return;
+
+        // Popup Text
+        GameObject refr = Instantiate(damageTextPrefab, transform);
+        Transform child = refr.transform.GetChild(0);
+        child.position += new Vector3(0.4f, 0f, 0f);
+        child.GetComponent<TextMeshPro>().SetText("-" + amount.ToString());
 
         _currHealth -= amount;
         _currHealth = Mathf.Clamp(_currHealth, 0, _maxHealth);

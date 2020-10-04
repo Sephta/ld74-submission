@@ -62,6 +62,8 @@ public class BattleDirector : MonoBehaviour
 
         SpriteRenderer cSprite = creature.GetComponent<SpriteRenderer>();
         cSprite.sprite = _cData.CreatureImage;
+
+        creature.name = _cData.CreatureName + " (P)";
     }
 
     private void PlayerSetup()
@@ -107,6 +109,8 @@ public class BattleDirector : MonoBehaviour
 
         SpriteRenderer cSprite = creature.GetComponent<SpriteRenderer>();
         cSprite.sprite = _cData.CreatureImage;
+
+        creature.name = _cData.CreatureName + " (E)";
     }
 
     private void EnemySetup()
