@@ -16,14 +16,12 @@ public class CreatureBattleAI : MonoBehaviour
     [Header("Particles")]
     public GameObject ringParticle = null;
     public GameObject hitParticle = null;
+    public GameObject effectParticle = null;
 
     [Header("Creature Battle Data")]
     public EntityType _entityType = (EntityType)0;
     [ReadOnly] public GameObject _currTarget = null;
     public float _moveSpeed = 0f;
-
-    public float _abilityTime = 0f;
-    [SerializeField, ReadOnly] private float _abilityTimer = 0f;
     
     // STATS -------------------------------------------------------------
     // health stat
@@ -36,7 +34,7 @@ public class CreatureBattleAI : MonoBehaviour
     [Range(0, 1), Tooltip("Rate at which attacks land. (in seconds)")]
     public float _spdStat = 0f;
     [ReadOnly] public float _atkTimer = 0f;
-    // end STATS ---------------------------------------------------------
+    // end STATS ---------------------------------------------------------\
 
     [Header("Battle Data")]
     public bool _abilityTrigger = false;
@@ -94,26 +92,17 @@ public class CreatureBattleAI : MonoBehaviour
 
     void Update()
     {
-        // DecramentTimer();
 
         if (_currHealth == 0)
         {
             Debug.Log(gameObject.name + " has been defeated.");
             Destroy(transform.parent.gameObject);
         }
-
-        // if (_atkTimer == 0)
-        //     SetTimer(_spdStat);
     }
 
     void FixedUpdate()
     {
-        if (_abilityTrigger)
-        {
-            Debug.Log("<" + gameObject.name + "> has activated ability.");
-            _abilityTrigger = false;
-        }
-        else if (_entityType != (EntityType)0 && _currTarget != null)
+        if (_entityType != (EntityType)0 && _currTarget != null)
         {
             _anim.SetBool("isRunning", true);
             _rb.AddForce(((CalculateDirection() * _moveSpeed) - _rb.velocity) * Time.fixedDeltaTime, ForceMode2D.Impulse);
@@ -164,6 +153,10 @@ public class CreatureBattleAI : MonoBehaviour
         Transform child = refr.transform.GetChild(0);
         child.position += new Vector3(0.4f, 0f, 0f);
         child.GetComponent<TextMeshPro>().SetText("-" + amount.ToString());
+        if (_entityType == EntityType.player)
+            child.GetComponent<TextMeshPro>().color = Color.green;
+        else if (_entityType == EntityType.enemy)
+            child.GetComponent<TextMeshPro>().color = Color.red;
 
         // Hit Particle
         GameObject refr2 = Instantiate(hitParticle, this.transform);
@@ -205,6 +198,13 @@ public class CreatureBattleAI : MonoBehaviour
         return new Vector2(moveX, moveY);
     }
 
+    public void SetTimer(float amount) { _atkTimer = amount; }
+    public void DecramentTimer()
+    {
+        _atkTimer -= Time.deltaTime;
+        _atkTimer = Mathf.Clamp(_atkTimer, 0, _spdStat);
+    }
+
     private void GetTargets()
     {
 
@@ -228,13 +228,5 @@ public class CreatureBattleAI : MonoBehaviour
                         this._enemyCreatures.Add(enemy);
             }
         }
-    }
-
-    public void SetTimer(float amount) { _atkTimer = amount; }
-
-    public void DecramentTimer()
-    {
-        _atkTimer -= Time.deltaTime;
-        _atkTimer = Mathf.Clamp(_atkTimer, 0, _spdStat);
     }
 }

@@ -13,6 +13,18 @@ public class ButtonFunctions : MonoBehaviour
     // void Update() {}
     // void FixedUpdate() {}
 
+
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void PlayButtonSound(int index)
+    {
+        if (AudioManager._instance != null)
+            AudioManager._instance.PlaySFX(index);
+    }
+
     public void BeginBattle()
     {
         if (BattleSystem._instance != null)

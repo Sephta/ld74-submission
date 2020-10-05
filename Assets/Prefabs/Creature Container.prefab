@@ -74,9 +74,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1604433739
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8853224524191648439
 MonoBehaviour:
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7432194534489465242}
   m_maskType: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
+  _SortingLayerID: 1604433739
+  _SortingOrder: 2
 --- !u!1 &3119094930782536080
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,11 +361,10 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 1493890510516903782, guid: 8e6bdc5fa02bae743b7b429c52cec524, type: 3}
   ringParticle: {fileID: 8145988287558639286, guid: 2e0b8bc2277ec344481b84e1ce6bc121, type: 3}
   hitParticle: {fileID: 845743370255687629, guid: fae34ffe47bef314cb085de3046b9139, type: 3}
+  effectParticle: {fileID: 417941513241468440, guid: d5b06ed3a54917f419a5b0df79e0d11a, type: 3}
   _entityType: 0
   _currTarget: {fileID: 0}
   _moveSpeed: 0
-  _abilityTime: 0
-  _abilityTimer: 0
   _maxHealth: 0
   _currHealth: 0
   _dmgStat: 0

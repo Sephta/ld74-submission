@@ -16,7 +16,7 @@ public class UIHoverEffect : MonoBehaviour
 
     void OnMouseOver()
     {
-        Debug.Log("Hovering over -> " + gameObject.name);
+        // Debug.Log("Hovering over -> " + gameObject.name);
         if (_statData != null && _cData != null)
         {
             _statData.creatureImage.sprite = _cData.CreatureImage;

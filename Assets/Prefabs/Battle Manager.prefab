@@ -43,3 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c1d5c7018bee9419d64687129ebb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _creatureRef: {fileID: 0}
+  _playerCreatures: []
+  _enemyCreatures: []
+  _selectablePartners:
+  - {fileID: 11400000, guid: 30b83e3f8c1ef09408565aaf8e018d08, type: 2}
+  - {fileID: 11400000, guid: a7584654b04c7e54ab0617765ae6e817, type: 2}
+  - {fileID: 11400000, guid: b0d87d1575e3d7346ab3fc53bf6e1c7c, type: 2}
+  - {fileID: 11400000, guid: b45dac562474a0a49b6ac31a6acc925a, type: 2}
+  - {fileID: 11400000, guid: 3ea8feab5fb9f37458e9fd8dadd29ea7, type: 2}
+  - {fileID: 11400000, guid: ee2e16b005af14e48b873e267cdc3700, type: 2}
+  - {fileID: 11400000, guid: 6ea27df47cc5f2d4cad8ed67dc7feee9, type: 2}
+  - {fileID: 11400000, guid: 7986d4e9ba1a49e46af81e30933ebb4b, type: 2}
+  _selected: 0000000000000000
+  _gameStart: 0

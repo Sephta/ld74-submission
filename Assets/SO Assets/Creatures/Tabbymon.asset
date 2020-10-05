@@ -18,5 +18,5 @@ MonoBehaviour:
   _creatureImage: {fileID: -8464040554697439902, guid: 82ca09862eb531b4382810140150ab38, type: 3}
   _creatureEXP: 0
   _creatureColliderSize: {x: 0, y: 0}
-  _creatureStats: 000000000000000000000000000000000000000000000000
+  _creatureStats: 780000000f0000002c010000050000006400000000000000
   _creatureDescription: Designed after my childhood pet cat.

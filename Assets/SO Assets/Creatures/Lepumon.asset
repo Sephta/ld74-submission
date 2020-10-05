@@ -18,5 +18,6 @@ MonoBehaviour:
   _creatureImage: {fileID: -1091741334894721673, guid: 82ca09862eb531b4382810140150ab38, type: 3}
   _creatureEXP: 0
   _creatureColliderSize: {x: 0, y: 0}
-  _creatureStats: 000000000000000000000000000000000000000000000000
-  _creatureDescription: The simple white hare in the snow.
+  _creatureStats: 730000000800000096000000070000002300000000000000
+  _creatureDescription: Will frequently hunt in large groups to combat groups of
+    Tundramon.
