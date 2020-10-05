@@ -1372,9 +1372,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Partner 1
 --- !u!222 &417637576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1940,9 +1938,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Enemy 3
 --- !u!222 &578063886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2021,9 +2017,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Partner 2
 --- !u!222 &594701858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2395,9 +2389,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Partner 3
 --- !u!222 &740365081
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2578,9 +2570,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Enemy 2
 --- !u!222 &933611498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6729,9 +6719,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Creature
-
-'
+  m_Text: Enemy 1
 --- !u!222 &1457218593
 CanvasRenderer:
   m_ObjectHideFlags: 0
